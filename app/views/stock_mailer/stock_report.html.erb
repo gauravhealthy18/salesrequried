@@ -1,0 +1,26 @@
+<h1>Stock Requirements Report</h1>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>SKU Code</th>
+      <% StockCalculator::LOCATIONS.each do |location| %>
+        <th><%= location %> Sales</th>
+        <th><%= location %> Stock</th>
+        <th><%= location %> Required</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @stock_results.each do |result| %>
+      <tr>
+        <td><%= result['Sku Code'] %></td>
+        <% StockCalculator::LOCATIONS.each do |location| %>
+          <td><%= result["#{location} Sales"] %></td>
+          <td><%= result["#{location} Stock"] %></td>
+          <td><%= result["#{location} Qty Required"] %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
